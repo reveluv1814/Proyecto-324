@@ -41,6 +41,21 @@ insert into FlujoProceso values('F1','P7',null,'F','CausaNegativa','TribElectora
 insert into FlujoProceso values('F1','P8','P9','P','ControlDocumentos','TribElectoral');
 insert into FlujoProceso values('F1','P9','P10','P','EnviarNoti','TribElectoral');
 insert into FlujoProceso values('F1','P10',null,'P','RecibeNotifi','RepFrente');
+/*flujo 2*/
+insert into FlujoProceso values('F2','P1','P2','I','Inicio','Alumno');
+insert into FlujoProceso values('F2','P2','P3','P','Documentos','Alumno');
+insert into FlujoProceso values('F2','P3','P4','P','Presentar','Alumno');
+insert into FlujoProceso values('F2','P4',null,'C','AlDia','Kardex');
+insert into FlujoProceso values('F2','P5',null,'F','CausaNegativa','Kardex');
+insert into FlujoProceso values('F2','P6','p7','P','PagoInscripcion','Kardex');
+insert into FlujoProceso values('F2','P7','p8','P','ControlDocumentos','Kardex');
+insert into FlujoProceso values('F2','P8','p9','P','ElegirCarrera','Alumno');
+insert into FlujoProceso values('F2','P9','p10','P','Solicitarcodigo','Alumno');
+insert into FlujoProceso values('F2','P10',null,'P','CompraCarnet','Caja');
+
+
+
+
 
 insert into flujoprocesocondicionante values('F1','P5','P6','P8','P7','P9');
 create table Usuario
@@ -54,6 +69,7 @@ insert into Usuario values(2,'gpocoma');
 insert into Usuario values(3,'gnova');
 insert into Usuario values(4,'secreDoris');
 insert into Usuario values(5,'TribunalE');
+insert into Usuario values(6,'rsalazar');
 
 /*/DELETE from usuario;*/
 create table Rol
@@ -64,6 +80,7 @@ create table Rol
 insert into Rol values(1,'RepFrente');
 insert into Rol values(2,'Secretaria');
 insert into Rol values(3,'TribElectoral');
+insert into Rol values(4,'Alumno');
 
 create table RolUsuario
 (
@@ -75,6 +92,7 @@ insert into RolUsuario values(1,2);
 insert into RolUsuario values(1,3);
 insert into RolUsuario values(2,4);
 insert into RolUsuario values(3,5);
+insert into RolUsuario values(4,6);
 /*////////////////////////////*/
 create table Frente
 (
@@ -109,3 +127,13 @@ create table Notifica
 /*DROP Table frente
 
 SELECT * from rol*/
+/* flujo 2*/
+create table Alumno
+(
+    IdAlumno serial,
+    nomusuario VARCHAR(25),
+    nombrec VARCHAR(25),
+    cidentidad VARCHAR(25),
+    cnacimiento VARCHAR(25),
+    constraint PK_Alumno primary key (IdAlumno)
+);
