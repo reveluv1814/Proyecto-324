@@ -13,7 +13,7 @@ create table FlujoProcesoCondicionante(
     ProcesoSI VARCHAR(3),
     ProcesoSISig VARCHAR(3),
     ProcesoNO VARCHAR(3),
-    ProcesoNOSig VARCHAR(3),
+    ProcesoNOSig VARCHAR(11),
     estado VARCHAR(3)
 );
  
@@ -47,17 +47,17 @@ insert into FlujoProceso values('F2','P2','P3','P','Documentos','Alumno');
 insert into FlujoProceso values('F2','P3','P4','P','Presentar','Alumno');
 insert into FlujoProceso values('F2','P4',null,'C','AlDia','Kardex');
 insert into FlujoProceso values('F2','P5',null,'F','CausaNegativa','Kardex');
-insert into FlujoProceso values('F2','P6','p7','P','PagoInscripcion','Kardex');
-insert into FlujoProceso values('F2','P7','p8','P','ControlDocumentos','Kardex');
-insert into FlujoProceso values('F2','P8','p9','P','ElegirCarrera','Alumno');
-insert into FlujoProceso values('F2','P9','p10','P','Solicitarcodigo','Alumno');
-insert into FlujoProceso values('F2','P10',null,'P','CompraCarnet','Caja');
+insert into FlujoProceso values('F2','P6','P7','P','PagoInscripcion','Kardex');
+insert into FlujoProceso values('F2','P7','P8','P','ControlDocumentos','Kardex');
+insert into FlujoProceso values('F2','P8','P9','P','ElegirCarrera','Alumno');
+insert into FlujoProceso values('F2','P9','P10','P','Confirmacion','Alumno');
 
 
 
 
 
 insert into flujoprocesocondicionante values('F1','P5','P6','P8','P7','P9');
+insert into flujoprocesocondicionante values('F2','P3','P4','P6','P5','FinProceso');
 create table Usuario
 (
     id int,
@@ -69,7 +69,9 @@ insert into Usuario values(2,'gpocoma');
 insert into Usuario values(3,'gnova');
 insert into Usuario values(4,'secreDoris');
 insert into Usuario values(5,'TribunalE');
-insert into Usuario values(6,'rsalazar');
+insert into Usuario values(6,'KardEx');
+insert into Usuario values(7,'rsalazar');
+insert into Usuario values(8,'LCuba');
 
 /*/DELETE from usuario;*/
 create table Rol
@@ -81,6 +83,7 @@ insert into Rol values(1,'RepFrente');
 insert into Rol values(2,'Secretaria');
 insert into Rol values(3,'TribElectoral');
 insert into Rol values(4,'Alumno');
+insert into Rol values(5,'Kardex');
 
 create table RolUsuario
 (
@@ -92,7 +95,9 @@ insert into RolUsuario values(1,2);
 insert into RolUsuario values(1,3);
 insert into RolUsuario values(2,4);
 insert into RolUsuario values(3,5);
-insert into RolUsuario values(4,6);
+insert into RolUsuario values(4,7);
+insert into RolUsuario values(4,8);
+insert into RolUsuario values(5,6);
 /*////////////////////////////*/
 create table Frente
 (
@@ -116,6 +121,14 @@ create table Entrega
     Fecha DATE,
     constraint PK_Entrega primary key (IdEntrega)
 );
+create table Recepcion
+(
+    IdRecepcion serial,
+    IdAlumno int,
+    horaEntrega VARCHAR(25),
+    Fecha VARCHAR(25),
+    constraint PK_Recepcion primary key (IdRecepcion)
+);
 
 create table Notifica
 (
@@ -136,4 +149,12 @@ create table Alumno
     cidentidad VARCHAR(25),
     cnacimiento VARCHAR(25),
     constraint PK_Alumno primary key (IdAlumno)
+);
+create table Inscripcion
+(
+    IdInscripcion serial,
+    idalumno int,
+    pagoinscripcon VARCHAR(15),
+    carrera VARCHAR(15),
+    constraint PK_Inscripcion primary key (IdInscripcion)
 );

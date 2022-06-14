@@ -1,13 +1,20 @@
-    <h3>Proceso 2 </h3>
-    <h4>Preparar Documentos</h4>
+<h3>Proceso 3 </h3>
+<h4>Presentar Inscripción</h4>
+<input type="hidden" name="id" value=""/>
 <div class="formu">
-<input type="hidden" name="id" value=""/><br>
-<h5 class="titu">Prepara Tus Documentos</h5>
-<p type="Nombre Completo:"><input type="text" name="nombrec" placeholder="Escribe tu nombre completo..."></p>
-<p type="Num. Carnet de Identidad:"><input type="text" name="cidentidad" placeholder="Escribe el Númerom de tu CI."></p>
-<p type="Num. Certificado de Nacimiento:"><input type="text" name="cnacimiento" placeholder="Escribe el Número del Certificado de Nacimiento."></p>
+<h5 class="titu">Documentos Subidos</h5>
+<h6>Revisa los Documentos que preparaste para Entregarlo a Kardex.</h6>
+<input type="hidden" name="idalumno" value="<?php echo $idalumno; ?>">
+<p type="Nombre Completo:"><input type="text" name="nombrec" value="<?php echo $nombrec; ?>"></p>
+
+<p type="Num. Carnet de Identidad:"><input type="text" name="cidentidad" value="<?php echo $cidentidad; ?>"></p>
+
+<p type="Num. Certificado de Nacimiento:"><input type="text" name="cnacimiento" value="<?php echo $cnacimiento; ?>"></p>
+
 
 </div>
+
+
 
 
 
@@ -24,15 +31,19 @@
         font-weight: bold;
         text-align: center;
         color: #3A4750;
-    }  
+    }
+    h6{
+        font-size: 18px;
+        color: #393E46;
+    }
     .formu{
         width:540px;
         height:auto;
-        background:#393E46;
+        background:#EEEEEE;
         border-radius:8px;
         box-shadow:0 0 40px -10px #000;
         margin:calc(26vh - 220px) auto;
-        padding:0px 30px;
+        padding:20px 30px;
         padding-bottom: 50px;
         max-width:calc(100vw - 40px);
         box-sizing:border-box;
@@ -50,27 +61,28 @@
         font-family:'Poppins',sans-serif;
         transition:all .3s;
         border-bottom:2px solid #bebed2;
-        color: #EEEEEE;
+        color: #393E46;
     }
     input:focus{
         border-bottom:2px solid #78788c;
     }
-    input::placeholder{
-        color: #929AAB;
+    input::-ms-value{
+        color: #393E46;
+        font-size:15px;
     }
     p:before{
         content:attr(type);
         display:block;
         margin:28px 0 0;
         font-size:20px;
-        color:#EEEEEE;
+        color:#393E46;
         font-weight: 100;
     }
     h5{
         margin:10px 0;
         padding-bottom:10px;
         width:280px;
-        color:#929AAB;
+        color:#393E46;
         border-bottom:3px solid #78788c;
         font-size: 25px;
     }

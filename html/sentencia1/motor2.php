@@ -18,8 +18,8 @@ include "procesos2/".$pantalla;
 // lleva al proceso anterior
 if(isset($_GET["Anterior"]))
 { 
-    if($proceso =='P8'){
-        $proceso = 'P6';
+    if($proceso =='P6'){
+        $proceso = 'P3';
     }
     //echo $proceso;
     $sql="select * from flujoproceso ";
@@ -30,6 +30,6 @@ if(isset($_GET["Anterior"]))
    
     
 }
-header("Location: principal.php?flujo=$flujo&proceso=$procesosiguiente");
+header("Location: principal2.php?flujo=$flujo&proceso=$procesosiguiente");
 
 ?>

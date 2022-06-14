@@ -3,42 +3,42 @@
     session_start();
     $con = pg_connect("host=postgres port=5432 dbname=mibaseneil user=neil password=admin");
 
-    $sql="select u.Nomusuario from Usuario u, Rol r, RolUsuario rl where u.id = rl.idusuario and r.idrol = rl.idrol and r.namerol = 'TribElectoral'";
+    $sql="select u.Nomusuario from Usuario u, Rol r, RolUsuario rl where u.id = rl.idusuario and r.idrol = rl.idrol and r.namerol = 'Kardex'";
     $resultado=pg_query($con,$sql);
     $fila=pg_fetch_array($resultado);
 
-    $_SESSION["tribunal"]=$fila['nomusuario'];
+    $_SESSION["kardex"]=$fila['nomusuario'];
 
 
-    $sql2="select idfrente from Frente where nusuario='".$_SESSION["id"]."'";
+    $sql2="select idalumno from Alumno where nomusuario='".$_SESSION["alumno"]."'";
     $resultado1=pg_query($con,$sql2);
     $fila1=pg_fetch_array($resultado1);
 
-    $sql1="insert into flujoprocesoseguimiento (flujo, proceso,numerosolicitud, usuario, fechainicio, horainicio) values('F1','ProcesoCondicionante',".$fila1["idfrente"]." , '".$_SESSION["tribunal"]."','".date('d-m-Y')."', '".date('H:i:s')."')";
+    $sql1="insert into flujoprocesoseguimiento (flujo, proceso,numerosolicitud, usuario, fechainicio, horainicio) values('F2','ProcesoCondicionante',".$fila1["idalumno"]." , '".$_SESSION["kardex"]."','".date('d-m-Y')."', '".date('H:i:s')."')";
     $r=pg_query($con,$sql1);
 ?>
-<h2>Bienvenido:&nbsp;&nbsp;&nbsp;<b><?php echo "".$_SESSION["tribunal"]; ?></b></h2>
-<h1>Flujo #1</h1>
+<h2>Bienvenido:&nbsp;&nbsp;&nbsp;<b><?php echo "".$_SESSION["kardex"]; ?></b></h2>
+<h1>Flujo #2</h1>
 <h1>Flujo de Proceso Condicionante</h1>
 
-<h3>Proceso 6 y 7 </h3>
+<h3>Proceso 4 y 5 </h3>
     <h4>Proceso Condicionante</h4>
-<h5>Controlor y Revisión de los Documentos y Requisitos del Frente del Usuario <b><?php echo "".$_SESSION["id"]; ?></b></h5><br>
+<h5>Controlor y Revisión de los Documentos del Alumno <b><?php echo "".$_SESSION["alumno"]; ?></b></h5><br>
 
 <div class="containertb">
     <p class="titulon">Los Documentos que se Recepcionó:</p>  
     <table class="table">
         <thead>
-            <th><b>Numero de Entrega</b></th>
-            <th><b>ID Frente</b></th>
-            <th><b>Nombre del Frente</b></th>
+            <th><b>Numero de Recepción</b></th>
+            <th><b>ID Alumno</b></th>
+            <th><b>Nombre del Alumno</b></th>
             <th><b>Hora en la que fue Entregada la Solicitud</b></th>
             <th><b>Fecha en la que fue Entregada la Solicitud</b></th>     
         </thead>
             <tbody>
                     <tr>
                         <?php
-                             $sql="select g.identrega, g.idfrente, f.nomfrente, g.horaentrega, g.fecha from entrega g, frente f where f.nusuario='".$_SESSION["id"]."' and f.idfrente = g.idfrente";
+                             $sql="select r.idrecepcion, r.idalumno, a.nombrec, r.horaentrega, r.fecha from recepcion r, alumno a where a.nomusuario='".$_SESSION["alumno"]."' and a.idalumno = r.idalumno";
                              $resultado=pg_query($con,$sql);
                              $fila=pg_fetch_array($resultado);
                         ?>
@@ -51,10 +51,10 @@
             </tbody>
     </table>
 
-    <form action="procesos/MotorCondicionante.php" method="post" >
+    <form action="procesos2/MotorCondicionante.php" method="post" >
         <br><br>
-        <h5>El Frente cumplió con el plazo de la Convocatoria, el Frente cumplió con los Requisitos y la Documentación necesaria?</h5>
-        <h5>Por tanto,&nbsp; <b>La Solicitud de Inscripción del Frente fue ACEPTADA?</b></h5>
+        <h5>El Alumno cumplió con el plazo de la fecha de Inscripción, el Alumno cumplió con los Requisitos y la Documentación necesaria?</h5>
+        <h5>Por tanto,&nbsp; <b>La Solicitud de Inscripción del Alumno fue ACEPTADA?</b></h5>
         <div class="condicion">
             
             <input type="checkbox" name="procesosi" value="value1">

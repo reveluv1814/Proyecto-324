@@ -1,6 +1,6 @@
 <?php
 session_start();
-$usuario=$_SESSION['id'];
+$usuario=$_SESSION['alumno'];
     if($usuario == null || $usuario == ''){
         echo '<h1 style ="text-align:center;font-size:100px;">UPSSSS!</h1>';
         echo '<h2 style ="text-align:center;font-size:90px;font-weight: 100;" >Usted No tiene un Usuario Asignado!</h2>';
@@ -8,7 +8,7 @@ $usuario=$_SESSION['id'];
 }
 else{
 ?>
-<h2>Bienvenido:&nbsp;&nbsp;&nbsp;<b><?php echo "".$_SESSION["id"]; ?></b></h2>
+<h2>Bienvenido:&nbsp;&nbsp;&nbsp;<b><?php echo "".$_SESSION["alumno"]; ?></b></h2>
 
 <!-- estilo-->
 <style>
@@ -29,7 +29,7 @@ else{
     }
 </style>
 <?php
-$sql="insert into flujoprocesoseguimiento (flujo, proceso, usuario, fechainicio, horainicio) values('F2','P2', '".$_SESSION["id"]."','".date('d-m-Y')."', '".date('H:i:s')."')";
+$sql="insert into flujoprocesoseguimiento (flujo, proceso, usuario, fechainicio, horainicio) values('F2','P2', '".$_SESSION["alumno"]."','".date('d-m-Y')."', '".date('H:i:s')."')";
 $resultado=pg_query($con,$sql);
 }
 ?>

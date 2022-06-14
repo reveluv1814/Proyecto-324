@@ -85,6 +85,7 @@ include "procesos/".$pantallalogica;
 		}
 	</style>
 <body>
+<h1>Flujo #1</h1>
 	<h1>Flujo de Procesos</h1>
 	<div class="container">
 		<div class="containerPri">
